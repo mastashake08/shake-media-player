@@ -6,10 +6,17 @@
 </template>
 
 <script>
+import jsmediatags from 'jsmediatags/dist/jsmediatags.min.js'
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  data() {
+    return {
+      audio: new Audio(),
+      tags: {}
+    }
   },
   methods: {
     async getFile() {
@@ -30,21 +37,44 @@ export default {
       const [fileHandle] = await window.showOpenFilePicker(pickerOpts);
       // get file contents
       const fileData = await fileHandle.getFile();
-      const audio = new Audio()
-      audio.src = URL.createObjectURL(fileData)
-      navigator.mediaSession.metadata = new MediaMetadata({
-    title: fileData.name,
-    artist: "Shake Media Player",
-    album: "Shake Media Player",
-    artwork: [
-      {
-        src: window.location.href+"/img/icons/icon-96",
-        sizes: "96x96",
-        type: "image/png",
-      }
-    ],
-  });
-      audio.play()
+      console.log(window.location.href+"img/icons/icon-96")
+      jsmediatags.read(fileData, {
+        onSuccess: (tag) => {
+          console.log(tag);
+          this.tags = tag
+          navigator.mediaSession.metadata = new MediaMetadata({
+            title: this.tags.title,
+            artist: this.tags.artist !== "" ? this.tags.artist : "Shake Media Player",
+            album: this.tags.album !== "" ? this.tags.album :"Shake Media Player",
+            artwork: [
+              {
+                src: window.location.href+"img/icons/icon-96",
+                sizes: "96x96",
+                type: "image/png",
+              }
+            ],
+          });
+          this.audio.src = URL.createObjectURL(fileData)
+      
+      this.audio.play()
+        },
+        onError: function(error) {
+          console.log(error);
+          navigator.mediaSession.metadata = new MediaMetadata({
+            title: fileData.name,
+            artist: "Shake Media Player",
+            album: "Shake Media Player",
+            artwork: [
+              {
+                src: window.location.href+"img/icons/icon-96",
+                sizes: "96x96",
+                type: "image/png",
+              }
+            ],
+          });
+        }
+      });
+      
     }
   }
 }
