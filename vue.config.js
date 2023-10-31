@@ -3,7 +3,7 @@ module.exports = defineConfig({
   transpileDependencies: true,
   publicPath: process.env.NODE_ENV === 'production'
     ? '/shake-media-player/'
-    : '/'
+    : '/',
   pwa: {
     id: '/',
     themeColor: "#5853FF",
