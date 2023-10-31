@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Shake Media Logo" src="./assets/logo.png" height="250" width="250">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld msg="Shake Media Player"/>
   </div>
 </template>
 
@@ -24,5 +24,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+body {
+  background-color: #5853FF;
 }
 </style>
