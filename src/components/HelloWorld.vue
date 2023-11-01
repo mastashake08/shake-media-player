@@ -99,7 +99,7 @@ export default {
             album: "Shake Media Player",
             artwork: [
               {
-                src: window.location.href+"img/icons/icon-96",
+                src: "../assets/logo.png",
                 sizes: "96x96",
                 type: "image/png",
               }
@@ -118,7 +118,7 @@ export default {
         album: "Shake Media Player",
         artwork: [
           {
-            src: window.location.href+"img/icons/icon-96",
+            src: "../assets/logo.png",
             sizes: "96x96",
             type: "image/png",
           }
