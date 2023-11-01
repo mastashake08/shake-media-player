@@ -1,7 +1,17 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <button class="btn" id="upload-btn" @click="getFile"> <img class="icon" src="../assets/open-file.svg"></button>
+    <div class="image-upload">
+      <label for="file-input">
+        <img class="icon" src="../assets/open-file.svg">
+      </label>
+
+      <input id="file-input" type="file" accept="audio/* video/*" @change="getFileInput"/>
+    </div>
+    <div class="meta">
+      <img class="artwork" :src="this.tags.picture" v-if="this.tags.picture"/>
+      <!-- <label class="title">{{ tags.title }} - {{ tags.artist }}</label> -->
+    </div>
   </div>
 </template>
 
@@ -19,6 +29,10 @@ export default {
     }
   },
   methods: {
+    async getFileInput(e) {
+      const file = e.target.files[0]
+      this.setFile(file)
+    },
     async getFile() {
       const pickerOpts = {
       types: [
@@ -36,27 +50,44 @@ export default {
       // open file picker
       const [fileHandle] = await window.showOpenFilePicker(pickerOpts);
       // get file contents
-      const fileData = await fileHandle.getFile();
+      const fileData = await fileHandle.getFile();   
+      this.setFile(fileData) 
+    },
+
+    setFile(fileData) {
       console.log(window.location.href+"img/icons/icon-96")
       jsmediatags.read(fileData, {
         onSuccess: (tag) => {
-          console.log(tag);
-          this.tags = tag
-          navigator.mediaSession.metadata = new MediaMetadata({
+          let kind = ''
+          this.tags = tag.tags
+          if(this.tags.picture) {
+            const { data, format } = this.tags.picture;
+            const imgData = new Uint8ClampedArray(data)
+            const blob = new Blob( [ imgData ], { type: format} );
+            this.tags.picture = URL.createObjectURL(blob)
+            kind = format
+            
+          } else {
+            this.tags.picture = window.location.href+"img/icons/icon-96"
+            kind = fileData.kind
+          }
+
+          const meta = {
             title: this.tags.title,
             artist: this.tags.artist !== "" ? this.tags.artist : "Shake Media Player",
             album: this.tags.album !== "" ? this.tags.album :"Shake Media Player",
             artwork: [
               {
-                src: window.location.href+"img/icons/icon-96",
+                src: this.tags.picture, 
                 sizes: "96x96",
-                type: "image/png",
+                type: kind,
               }
             ],
-          });
+          }
+          navigator.mediaSession.metadata = new MediaMetadata(meta);
           this.audio.src = URL.createObjectURL(fileData)
       
-      this.audio.play()
+          this.audio.play()
         },
         onError: function(error) {
           console.log(error);
@@ -74,7 +105,6 @@ export default {
           });
         }
       });
-      
     }
   }
 }
@@ -125,4 +155,14 @@ h3 {
 			height: 32px;
 
 		}
+    .image-upload>input {
+      display: none;
+    }
+  .artwork {
+
+    width: 250px;
+    height: 250px;
+    margin-top: 10px;
+    border-radius: 25%;
+  }
 </style>
