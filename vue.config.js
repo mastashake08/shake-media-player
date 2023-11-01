@@ -7,7 +7,7 @@ module.exports = defineConfig({
   pwa: {
     id: '/',
     scope: '/',
-    assetsVersion: 'v3.0.8',
+    assetsVersion: 'v3.0.9',
     themeColor: "#5853FF",
     msTileColor: "#5853FF",
     name: "Shake Media Player",
@@ -83,7 +83,7 @@ module.exports = defineConfig({
     },
     iconPaths: {
       faviconSVG: './img/icons/icon.svg',
-      appleTouchIcon: './img/icons/apple-touch-icon-152x152.png',
+      appleTouchIcon: './img/icons/icon.svg',
       maskIcon: './img/icons/icon.svg'
     }
   },
