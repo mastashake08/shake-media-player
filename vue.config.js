@@ -14,6 +14,7 @@ module.exports = defineConfig({
     description: "Play local and remote media files with ease. Offline cache assets for offline playback",
     manifestOptions: {
       short_name: "SMP",
+      start_url: '/',
       share_target: {
         action: "/",
         method: "POST",
