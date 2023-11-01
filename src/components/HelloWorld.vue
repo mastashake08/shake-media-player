@@ -187,8 +187,7 @@ h3 {
     height: 250px;
     margin-top: 10px;
     border-radius: 25%;
-    animation: fade 2s;
-    animation-timing-function: ease-in-out;
+    animation: fade 8s;
     animation-iteration-count: infinite;
 
   }
@@ -202,9 +201,14 @@ h3 {
       opacity: 0.7;
     }
 
-    80% {
+    60% {
       opacity: 0;
     }
+    
+    80% {
+      opacity: .7;
+    }
+
     100% {
       opacity: 1;
     }
