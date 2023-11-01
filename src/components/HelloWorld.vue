@@ -108,7 +108,7 @@ export default {
           this.audio.play()
         }
       });
-      } catch (error) {
+      } catch {
         this.audio.src = URL.createObjectURL(fileData)
       
           
