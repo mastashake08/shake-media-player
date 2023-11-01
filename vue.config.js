@@ -7,7 +7,7 @@ module.exports = defineConfig({
   pwa: {
     id: '/',
     scope: '/',
-    assetsVersion: 'v3.0.4',
+    assetsVersion: 'v3.0.5',
     themeColor: "#5853FF",
     msTileColor: "#5853FF",
     name: "Shake Media Player",

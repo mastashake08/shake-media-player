@@ -109,7 +109,22 @@ export default {
         }
       });
       } catch (error) {
-        
+        this.audio.src = URL.createObjectURL(fileData)
+      
+          
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: fileData.name,
+        artist: "Shake Media Player",
+        album: "Shake Media Player",
+        artwork: [
+          {
+            src: window.location.href+"img/icons/icon-96",
+            sizes: "96x96",
+            type: "image/png",
+          }
+        ],
+      });
+      this.audio.play()
       }
       
     }
