@@ -6,12 +6,14 @@ module.exports = defineConfig({
     : '/',
   pwa: {
     id: '/',
+    scope: '/',
+    assetsVersion: 'v1',
     themeColor: "#5853FF",
     msTileColor: "#5853FF",
     name: "Shake Media Player",
-    short_name: "SMP",
     description: "Play local and remote media files with ease. Offline cache assets for offline playback",
     manifestOptions: {
+      short_name: "SMP",
       share_target: {
         action: "/",
         method: "POST",
