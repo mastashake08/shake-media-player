@@ -31,7 +31,7 @@ module.exports = defineConfig({
           "type": "image/png",
           "form_factor": "wide",
           "label": "Homescreen of Shake Media Player"
-        }
+        },
         {
           "src": "./img/icons/home-ss-phone.jpeg",
           "sizes": "1170x2007",
