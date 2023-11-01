@@ -68,12 +68,12 @@ export default {
             kind = format
             
           } else {
-            this.tags.picture = window.location.href+"img/icons/icon-96.png"
+            this.tags.picture = window.location.href+"img/icons/icon.svg"
             kind = fileData.kind
           }
 
           const meta = {
-            title: this.tags.title,
+            title: fileData.name,
             artist: this.tags.artist !== "" ? this.tags.artist : "Shake Media Player",
             album: this.tags.album !== "" ? this.tags.album :"Shake Media Player",
             artwork: [
@@ -99,9 +99,9 @@ export default {
             album: "Shake Media Player",
             artwork: [
               {
-                src: window.location.href+"img/icons/icon-96.png",
+                src: window.location.href+"img/icons/icon.svg",
                 sizes: "96x96",
-                type: "image/png",
+                type: "image/svg",
               }
             ],
           });
@@ -118,9 +118,9 @@ export default {
         album: "Shake Media Player",
         artwork: [
           {
-            src: window.location.href+"img/icons/icon-96.png",
+            src: window.location.href+"img/icons/icon.svg",
             sizes: "96x96",
-            type: "image/png",
+            type: "image/svg",
           }
         ],
       });
