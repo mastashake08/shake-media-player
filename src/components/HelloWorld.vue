@@ -55,8 +55,8 @@ export default {
     },
 
     setFile(fileData) {
-      console.log(window.location.href+"img/icons/icon-96")
-      jsmediatags.read(fileData, {
+      try {
+        jsmediatags.read(fileData, {
         onSuccess: (tag) => {
           let kind = ''
           this.tags = tag.tags
@@ -90,7 +90,9 @@ export default {
           this.audio.play()
         },
         onError: function(error) {
-          console.log(error);
+          this.audio.src = URL.createObjectURL(fileData)
+      
+          
           navigator.mediaSession.metadata = new MediaMetadata({
             title: fileData.name,
             artist: "Shake Media Player",
@@ -103,8 +105,13 @@ export default {
               }
             ],
           });
+          this.audio.play()
         }
       });
+      } catch (error) {
+        
+      }
+      
     }
   }
 }
