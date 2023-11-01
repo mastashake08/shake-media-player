@@ -7,13 +7,14 @@ module.exports = defineConfig({
   pwa: {
     id: '/',
     scope: '/',
-    assetsVersion: 'v2',
+    assetsVersion: 'v3.0.1',
     themeColor: "#5853FF",
     msTileColor: "#5853FF",
     name: "Shake Media Player",
     description: "Play local and remote media files with ease. Offline cache assets for offline playback",
     manifestOptions: {
       short_name: "SMP",
+      description: "Offline media player created by Jyrone Parker",
       start_url: '/',
       share_target: {
         action: "/",
@@ -23,6 +24,15 @@ module.exports = defineConfig({
           url: "link"
         }
       },
+      "screenshots" : [
+        {
+          "src": "./img/icons/home-ss.png",
+          "sizes": "1280x720",
+          "type": "image/png",
+          "form_factor": "wide",
+          "label": "Homescreen of Shake Media Player"
+        }
+      ],      
       display_override: ["window-controls-overlay"],
       icons: [
         {
@@ -65,9 +75,9 @@ module.exports = defineConfig({
       ]
     },
     iconPaths: {
-      faviconSVG: 'img/icons/icon.svg',
-      appleTouchIcon: 'img/icons/apple-touch-icon-152x152.png',
-      maskIcon: 'img/icons/icon.svg'
+      faviconSVG: './img/icons/icon.svg',
+      appleTouchIcon: './img/icons/apple-touch-icon-152x152.png',
+      maskIcon: './img/icons/icon.svg'
     }
   },
 })
