@@ -89,7 +89,7 @@ export default {
       
           this.audio.play()
         },
-        onError: function(error) {
+        onError: function() {
           this.audio.src = URL.createObjectURL(fileData)
       
           
