@@ -153,6 +153,7 @@ h3 {
   animation-iteration-count: infinite;
 }
 
+
 @keyframes shake {
   0% { transform: translate(1px, 1px) rotate(0deg); }
   10% { transform: translate(-1px, -2px) rotate(-1deg); }
@@ -186,5 +187,26 @@ h3 {
     height: 250px;
     margin-top: 10px;
     border-radius: 25%;
+    animation: fade 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+
+  }
+
+  @keyframes fade {
+    0% {
+      opacity: 1;
+    }
+
+    45% {
+      opacity: 0.7;
+    }
+
+    80% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 </style>
