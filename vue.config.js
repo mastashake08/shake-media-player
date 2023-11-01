@@ -7,7 +7,7 @@ module.exports = defineConfig({
   pwa: {
     id: '/',
     scope: '/',
-    assetsVersion: 'v3.0.1',
+    assetsVersion: 'v3.0.2',
     themeColor: "#5853FF",
     msTileColor: "#5853FF",
     name: "Shake Media Player",
@@ -31,6 +31,13 @@ module.exports = defineConfig({
           "type": "image/png",
           "form_factor": "wide",
           "label": "Homescreen of Shake Media Player"
+        }
+        {
+          "src": "./img/icons/home-ss--phone.png",
+          "sizes": "1170x2007",
+          "type": "image/png",
+          "form_factor": "narrow",
+          "label": "Load media files and play"
         }
       ],      
       display_override: ["window-controls-overlay"],
