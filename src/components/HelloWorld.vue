@@ -7,6 +7,8 @@
       </label>
 
       <input id="file-input" type="file" accept="audio/* video/*" @change="getFileInput"/>
+      <img id="speaker-selections" class="icon" src="../assets/speaker.svg" @click="setAudioOutput">
+      <img id="url-input" class="icon" src="../assets/radio.svg" @click="getURLInput">
     </div>
     <div class="meta">
       <img class="artwork" :src="this.tags.picture" v-if="this.tags.picture"/>
@@ -29,6 +31,14 @@ export default {
     }
   },
   methods: {
+    async getURLInput () {
+      const url = prompt('Enter URL of audio!')
+      const res = await fetch(url);
+      const body = await res.body.getReader()
+
+      console.log(body)
+    },
+
     async getFileInput(e) {
       const file = e.target.files[0]
       this.setFile(file)
@@ -53,7 +63,16 @@ export default {
       const fileData = await fileHandle.getFile();   
       this.setFile(fileData) 
     },
+    async setAudioOutput() {
+      if (!navigator.mediaDevices.selectAudioOutput) {
+        console.log("selectAudioOutput() not supported or not in secure context.");
+        return;
+      }
 
+      // Display prompt to select device
+      const audioDevice = await navigator.mediaDevices.selectAudioOutput();
+      this.audio.setSinkId(audioDevice.deviceId);
+    },
     setFile(fileData) {
       try {
         jsmediatags.read(fileData, {
