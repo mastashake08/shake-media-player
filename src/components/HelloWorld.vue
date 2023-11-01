@@ -68,7 +68,7 @@ export default {
             kind = format
             
           } else {
-            this.tags.picture = window.location.href+"img/icons/icon.svg"
+            this.tags.picture = window.location.href+"img/icons/icon-maskable.svg"
             kind = fileData.kind
           }
 
@@ -99,7 +99,7 @@ export default {
             album: "Shake Media Player",
             artwork: [
               {
-                src: window.location.href+"img/icons/icon.svg",
+                src: window.location.href+"img/icons/icon-maskable.svg",
                 sizes: "96x96",
                 type: "image/svg",
               }
@@ -118,7 +118,7 @@ export default {
         album: "Shake Media Player",
         artwork: [
           {
-            src: window.location.href+"img/icons/icon.svg",
+            src: window.location.href+"img/icons/icon-maskable.svg",
             sizes: "96x96",
             type: "image/svg",
           }
