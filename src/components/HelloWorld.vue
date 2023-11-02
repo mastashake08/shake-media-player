@@ -33,10 +33,8 @@ export default {
   methods: {
     async getURLInput () {
       const url = prompt('Enter URL of audio!')
-      const res = await fetch(url);
-      const body = await res.body.getReader()
-
-      console.log(body)
+      this.audio.src = url
+      this.audio.play()
     },
 
     async getFileInput(e) {
@@ -104,11 +102,13 @@ export default {
             ],
           }
           navigator.mediaSession.metadata = new MediaMetadata(meta);
+          console.log(this.audio)
           this.audio.src = URL.createObjectURL(fileData)
       
           this.audio.play()
         },
-        onError: function() {
+        onError: () => {
+          console.log(this.audio)
           this.audio.src = URL.createObjectURL(fileData)
       
           
